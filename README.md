@@ -17,4 +17,4 @@ Package responsible for providing a small CLI user interface, primarily for test
  - Mikhail Ortiz-Lunyov
  - Keshav Aditiya
  - Parth Aditiya
- - Prakhar ...
+ - Prakhar Chauhan
