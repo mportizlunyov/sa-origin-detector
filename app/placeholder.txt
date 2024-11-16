@@ -1,1 +1,1 @@
-Pakcage app
+Package app
