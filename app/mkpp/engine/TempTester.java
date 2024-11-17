@@ -2,10 +2,10 @@ package app.mkpp.engine;
 
 public class TempTester {
   public static void main(String[] args) {
-    Analyzer an = null;
+    URLAnalyzer an = null;
     try {
       // Greek, Latin, Latin, Latin, LatinEx
-      an = new Analyzer("ϿaaaΤ");
+      an = new URLAnalyzer("ϿaaaΤ");
     }
     catch (EmptyInputException e) {
       System.out.println(e.getMessage());

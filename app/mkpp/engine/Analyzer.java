@@ -47,12 +47,12 @@ public class Analyzer {
   /**
    * Field containing the raw, string version of the input from constructor.
    */
-  private String input;
+  protected String input;
   /**
    * Field containing the Unicode pointers of each character/digit of this.input.
    * Set via this.convertStringtoUnicodeList().
    */
-  private int[] unicodeArray;
+  protected int[] unicodeArray;
   // // // Related to result
   /**
    * Field containing the judged unicode codes, in the form of enum
