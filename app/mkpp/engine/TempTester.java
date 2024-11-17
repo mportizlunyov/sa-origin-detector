@@ -5,7 +5,7 @@ public class TempTester {
     Analyzer an = null;
     try {
       // Greek, Latin, Latin, Latin, LatinEx
-      an = new Analyzer("ϿaaaḀ");
+      an = new Analyzer("ϿaaaΤ");
     }
     catch (EmptyInputException e) {
       System.out.println(e.getMessage());
