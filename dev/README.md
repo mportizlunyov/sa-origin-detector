@@ -1,0 +1,2 @@
+## dev Folder
+This folder exists as part of out development. Specifically, it serves us  being a central place where we take notes, research potential stacks, and generally test/experiment with smaller features before actual integration.
