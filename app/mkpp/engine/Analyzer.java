@@ -174,19 +174,42 @@ public class Analyzer {
    */
   protected int[] getUnicode() { return this.unicodeArray; }
 
+  /**
+   * Getter method to retrieve statistics on the origins of letters in the input.
+   * 
+   * @param choice Enum option selected.
+   * @return Decimal ranging from 0.0 to 1.0 representing the percentage of different origins.
+   */
   protected double getStatistics(Alphabet choice) {
     // Initilise variables
     double total = (double)this.input.length();
 
     // Set the case switches
     switch (choice) {
-      case CYRILLIC: return ((double)this.numInstances[4])/total;
       case DIGIT: return ((double)this.numInstances[0])/total;
-      case GREEK: return ((double)this.numInstances[3])/total;
       case LATINBASIC: return ((double)this.numInstances[1])/total;
       case LATINEXTENDED: return ((double)this.numInstances[2])/total;
+      case GREEK: return ((double)this.numInstances[3])/total;
+      case CYRILLIC: return ((double)this.numInstances[4])/total;
+      // TODO: Define is other should be in 'default'
       case OTHER: return ((double)this.otherInstances)/total;
       default: return 0.0;
     }
+  }
+
+  /**
+   * Getter method to state whether or not all characters originate from the same alphabet.
+   * 
+   * @return True, if all characters are from the same alphabet; False otherwise.
+   */
+  protected boolean originsAllSame() {
+    // Initialise variables
+    Alphabet benchmark = this.alphabetEnumArray.get(0);
+    // Iterate through this.alphabetEnumArray(), returning false at the first difference.
+    for (Alphabet check : this.alphabetEnumArray) {
+      if (check.equals(benchmark)) { return false; }
+    }
+    // After entire iteration, return True
+    return true;
   }
 }
