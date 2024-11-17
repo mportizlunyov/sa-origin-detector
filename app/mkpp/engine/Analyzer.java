@@ -1,5 +1,8 @@
-// Package decalration
+// Package declaration
 package app.mkpp.engine;
+
+// Import packages
+import java.util.ArrayList;
 
 /**
  * This class analyzes an input,
@@ -46,15 +49,29 @@ public class Analyzer {
   // // // Hindi
   // TODO
   // // Fields related analyzing
+  // // // Related to user input
   /**
    * Field containing the raw, string version of the input from constructor.
    */
-  protected String input;
+  private String input;
   /**
    * Field containing the Unicode pointers of each character/digit of this.input.
    * Set via this.convertStringtoUnicodeList().
    */
-  protected int[] unicodeArray;
+  private int[] unicodeArray;
+  // // // Related to result
+  /**
+   * Field containing the judged unicode codes, in the form of enum
+   */
+  protected ArrayList<Alphabet> alphabetEnumArray = new ArrayList<Alphabet>();
+  /**
+   * Field containing number of instances of different scripts
+   */
+  private int[] numInstances = new int[]{0,0,0,0,0};
+  /**
+   * Field containing number of scripts NOT listed in the enum or numInstances
+   */
+  private int otherInstances = 0;
 
   // Begin Methods
   // // Constructor
@@ -97,7 +114,7 @@ public class Analyzer {
   }
 
   /**
-   * Private helper method to confirm if a value sis within an script/alphabet range.
+   * Private helper method to confirm if a value sits within an script/alphabet range.
    * 
    * @return True, if the int is within a value of a Unicode range; false otherwise.
    * @throws IllegalArgumentException If the unicodeRange parameter
@@ -120,9 +137,40 @@ public class Analyzer {
     }
   }
 
+  /**
+   * Private helper method to judge and save the origin of the unicode.
+   */
+  private void judgeUnicodeChar() {
+    // Iterate through this.unicodeArray
+    for (int unicode : this.unicodeArray) {
+      // Check if unicode is within the various ranges
+      if (this.isWithinRange(unicode, this.numericalDigitRange)) {
+        ++this.numInstances[0];
+        this.alphabetEnumArray.add(Alphabet.DIGIT);
+      } else if (this.isWithinRange(unicode, this.basicLatinCapitalUnicodeRange)
+                 || this.isWithinRange(unicode, this.basicLatinLowrCseUnicodeRange)
+      ) {
+        ++this.numInstances[1];
+        this.alphabetEnumArray.add(Alphabet.LATINBASIC);
+      } else if (this.isWithinRange(unicode, this.extendedLatinUnicodeRange)) {
+        ++this.numInstances[2];
+        this.alphabetEnumArray.add(Alphabet.LATINEXTENDED);
+      } else if (this.isWithinRange(unicode, this.basicGreekUnicodeRange)) {
+        ++this.numInstances[3];
+        this.alphabetEnumArray.add(Alphabet.GREEK);
+      } else if (this.isWithinRange(unicode, this.basicCyrillicUnicodeRange)) {
+        ++this.numInstances[4];
+        this.alphabetEnumArray.add(Alphabet.CYRILLIC);
+      } else {
+        ++this.otherInstances;
+        this.alphabetEnumArray.add(Alphabet.OTHER);
+      }
+    }
+  }
+
   // // Getter Methods
   /**
-   * Getter method to get the input from constructor.
+   * Getter method to retrieve the input from constructor.
    */
   protected String getInput() { return this.input; }
 
