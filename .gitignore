@@ -1,0 +1,6 @@
+# Git Ignore Document
+./app/mkpp/engine/TempTester.java
+
+./compiled
+
+./.vscode
