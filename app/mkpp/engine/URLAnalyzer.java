@@ -21,11 +21,36 @@ public class URLAnalyzer extends Analyzer {
    * @throws EmptyInputException In the event of null or empty input 
    */
   public URLAnalyzer(String input) {
+    // Run super's constructor
     super(input);
-    // TODO: New Exception?
+    // Run URLAnalyzer's own filtering
+    super.input = this.filterURL(input);
     if (!this.matchesDomainLength()) {
-      throw new IllegalArgumentException("NOT REAL URL!");
+      throw new BadURLFormatException("URL Length Invalid!");
     }
+    this.removePeriods();
+  }
+
+  /**
+   * Private helper method toremove the periods
+   */
+  private void removePeriods() {
+    super.input = super.input.replace(".", "");
+  }
+  /**
+   * Private helper method to filter the URL.
+   * 
+   * @return The modified string, with 'https://', 'http://', and periods removed.
+   */
+  private String filterURL(String input) {
+    String moddedInput = input;
+    if (moddedInput.startsWith("http://")) {
+      moddedInput = input.substring(6,input.length()-1);
+    } else if (moddedInput.startsWith("https://")) {
+      moddedInput = input.substring(7,input.length()-1);
+    }
+
+    return moddedInput;
   }
 
   /**
@@ -33,12 +58,27 @@ public class URLAnalyzer extends Analyzer {
    * 
    * Specifically, the requirements are:
    *  - less than 253 characters in total (without period)
-   *  - each 
+   *  - each label (section between .) less than 63 characters
+   * 
+   * https://www.nic.ad.jp/timeline/en/20th/appendix1.html
    * 
    * @return True, if the input matches the requirements to be a legitimate domain name;
    * False otherwise.
    */
   private boolean matchesDomainLength() {
-    return super.input.length() < 255;
+    // Check that total length is greater than 255
+    if (super.input.length() > 255) { return false; }
+    // Iterate through split strings, checking their length and beginnings/endings
+    for (String label : super.input.split(".")) {
+      if (label.length() > 63
+          || label.startsWith("-")
+          || label.endsWith("-")
+      ) {
+        return false;
+      }
+    }
+
+    // Return true if none of the previous conditions are met.
+    return true;
   }
 }

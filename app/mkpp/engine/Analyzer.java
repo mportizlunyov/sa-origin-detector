@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Analyzer {
   // Set fields
   // // Unicode ranges of major alphabetic scripts (inclusive)
+  // // Source: https://en.wikipedia.org/wiki/List_of_Unicode_characters
   // // // Numerical Digits
   /**
    * Field containing Unicode ranges for numerical digits
@@ -43,6 +44,8 @@ public class Analyzer {
    */
   protected int[] basicCyrillicUnicodeRange = new int[]{1024,1279};
   // // Fields related analyzing
+    // Automatically run Analysis as soom as it is created.
+  protected boolean analysisRun = false;
   // // // Related to user input
   /**
    * Field containing the raw, string version of the input from constructor.
@@ -87,6 +90,15 @@ public class Analyzer {
           throw new EmptyInputException("Resulting input CANNOT be empty!");
         }
     }
+  }
+
+  /**
+   * Method to start the actual analysis.
+   */
+  protected void beginAnalysis() {
+    // Set the field as true for this method being run.
+    this.analysisRun = true;
+    // Run conversion and judgements
     this.convertStringToUnicodeList();
     this.judgeUnicodeChar();
   }
@@ -134,7 +146,9 @@ public class Analyzer {
   /**
    * Private helper method to judge and save the origin of the unicode.
    */
-  private void judgeUnicodeChar() {
+  private void judgeUnicodeChar() throws IllegalStateException {
+    // Throw exception in the event that the beginAnalysis() method has not been run.
+    if (!this.analysisRun) { throw new IllegalStateException("Analysis has NOT been called."); }
     // Iterate through this.unicodeArray
     for (int unicode : this.unicodeArray) {
       // Check if unicode is within the various ranges

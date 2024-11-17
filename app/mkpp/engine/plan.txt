@@ -1,9 +1,0 @@
-Two Classes:
-
-Analyzer: Gets data; analyzes it
-URLAnalyzer: Extends above, but checks for URLs
-             (less than 255 chars in total, each label[seperation by .] less than 63 chars, at least one .)
-
-Sources:
- - https://en.wikipedia.org/wiki/List_of_Unicode_characters
- - https://www.nic.ad.jp/timeline/en/20th/appendix1.html

@@ -6,6 +6,7 @@ public class TempTester {
     try {
       // Greek, Latin, Latin, Latin, LatinEx
       an = new URLAnalyzer("ϿaaaΤ");
+      an.beginAnalysis();
     }
     catch (EmptyInputException e) {
       System.out.println(e.getMessage());
@@ -18,6 +19,5 @@ public class TempTester {
     )); // 0.0
     System.out.println(an.getStatistics(Alphabet.OTHER
     )); // 0.0
-    
   }
 }
