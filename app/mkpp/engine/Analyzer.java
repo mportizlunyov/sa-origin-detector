@@ -32,8 +32,6 @@ public class Analyzer {
    * Field containing Unicode ranges for extended Latin
    */
   protected int[] extendedLatinUnicodeRange = new int[]{161,591};
-  // // // Phonetic
-  // TODO
   // // // Greek/Coptic
   /**
    * Field containing Unicode ranges for basic Greek/Coptic
@@ -44,10 +42,6 @@ public class Analyzer {
    * Field containing Unicode ranges for basic Cyrillic
    */
   protected int[] basicCyrillicUnicodeRange = new int[]{1024,1279};
-  // // // Chinese (Simplified)
-  // TODO
-  // // // Hindi
-  // TODO
   // // Fields related analyzing
   // // // Related to user input
   /**
