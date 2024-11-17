@@ -12,8 +12,8 @@ public class TempTester {
     }
     System.out.println(an.getStatistics(Alphabet.LATINBASIC)); // 0.6
     System.out.println(an.getStatistics(Alphabet.LATINEXTENDED
-    )); // 0.2
-    System.out.println(an.getStatistics(Alphabet.GREEK)); // 0.2
+    )); // 0.0
+    System.out.println(an.getStatistics(Alphabet.GREEK)); // 0.4
     System.out.println(an.getStatistics(Alphabet.CYRILLIC
     )); // 0.0
     System.out.println(an.getStatistics(Alphabet.OTHER

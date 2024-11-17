@@ -78,7 +78,6 @@ public class Analyzer {
    * @throws EmptyInputException In the event of null or empty input 
    */
   public Analyzer(Object input) throws EmptyInputException {
-    // TODO: Define if gratiously, or with exception
     switch (input) {
       case null:
         throw new EmptyInputException("input for Analyzer object CANNOT be null!");
@@ -191,9 +190,7 @@ public class Analyzer {
       case LATINEXTENDED: return ((double)this.numInstances[2])/total;
       case GREEK: return ((double)this.numInstances[3])/total;
       case CYRILLIC: return ((double)this.numInstances[4])/total;
-      // TODO: Define is other should be in 'default'
-      case OTHER: return ((double)this.otherInstances)/total;
-      default: return 0.0;
+      default: return ((double)this.otherInstances)/total;
     }
   }
 
