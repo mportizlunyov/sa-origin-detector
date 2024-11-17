@@ -1,5 +1,5 @@
 # Git Ignore Document
-./app/mkpp/engine/TestTester.java
+./app/mkpp/engine/TempTester.java
 
 ./compiled
 

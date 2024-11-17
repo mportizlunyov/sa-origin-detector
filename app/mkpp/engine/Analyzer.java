@@ -31,7 +31,7 @@ public class Analyzer {
   /**
    * Field containing Unicode ranges for extended Latin
    */
-  protected int[] extendedLatinUnicodeRange = new int[]{192,7935};
+  protected int[] extendedLatinUnicodeRange = new int[]{161,591};
   // // // Phonetic
   // TODO
   // // // Greek/Coptic
@@ -94,7 +94,8 @@ public class Analyzer {
           throw new EmptyInputException("Resulting input CANNOT be empty!");
         }
     }
-    convertStringToUnicodeList();
+    this.convertStringToUnicodeList();
+    this.judgeUnicodeChar();
   }
 
   // // Private Helpers
@@ -178,4 +179,20 @@ public class Analyzer {
    * Getter method to retrieve raw Unicode.
    */
   protected int[] getUnicode() { return this.unicodeArray; }
+
+  protected double getStatistics(Alphabet choice) {
+    // Initilise variables
+    double total = (double)this.input.length();
+
+    // Set the case switches
+    switch (choice) {
+      case CYRILLIC: return ((double)this.numInstances[4])/total;
+      case DIGIT: return ((double)this.numInstances[0])/total;
+      case GREEK: return ((double)this.numInstances[3])/total;
+      case LATINBASIC: return ((double)this.numInstances[1])/total;
+      case LATINEXTENDED: return ((double)this.numInstances[2])/total;
+      case OTHER: return ((double)this.otherInstances)/total;
+      default: return 0.0;
+    }
+  }
 }
