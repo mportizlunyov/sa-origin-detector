@@ -19,7 +19,7 @@ public class Analyzer {
   /**
    * Field containing Unicode ranges for numerical digits
    */
-  protected int[] numericalDigitRange = new int[]{30,39};
+  protected int[] numericalDigitRange = new int[]{48,57};
   // // // Latin
   /**s
    * Field containing Unicode ranges for basic, Capital Latin.
@@ -95,7 +95,7 @@ public class Analyzer {
   /**
    * Method to start the actual analysis.
    */
-  protected void beginAnalysis() {
+  public void beginAnalysis() {
     // Set the field as true for this method being run.
     this.analysisRun = true;
     // Run conversion and judgements
@@ -180,12 +180,12 @@ public class Analyzer {
   /**
    * Getter method to retrieve the input from constructor.
    */
-  protected String getInput() { return this.input; }
+  public String getInput() { return this.input; }
 
   /**
    * Getter method to retrieve raw Unicode.
    */
-  protected int[] getUnicode() { return this.unicodeArray; }
+  public int[] getUnicode() { return this.unicodeArray; }
 
   /**
    * Getter method to retrieve statistics on the origins of letters in the input.
@@ -193,7 +193,7 @@ public class Analyzer {
    * @param choice Enum option selected.
    * @return Decimal ranging from 0.0 to 1.0 representing the percentage of different origins.
    */
-  protected double getStatistics(Alphabet choice) {
+  public double getStatistics(Alphabet choice) {
     // Initilise variables
     double total = (double)this.input.length();
 
@@ -213,7 +213,7 @@ public class Analyzer {
    * 
    * @return True, if all characters are from the same alphabet; False otherwise.
    */
-  protected boolean originsAllSame() {
+  public boolean originsAllSame() {
     // Initialise variables
     Alphabet benchmark = this.alphabetEnumArray.get(0);
     // Iterate through this.alphabetEnumArray(), returning false at the first difference.
